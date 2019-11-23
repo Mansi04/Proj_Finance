@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script>
+
+function valid(){
+      var fname = document.getElementById('fname').value;
+      var lname = document.getElementById('lname').value;
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var contact_no = document.getElementById('contact_no').value;
+      var email = document.getElementById('email').value;
+      var card_type = document.getElementById('card_type').value;
+      var bank = document.getElementById('bank').value;
+      var account_no = document.getElementById('account_no').value;
+      var ifsc = document.getElementById('ifsc').value;
+
+      
+   
+     var n1=document.getElementById('id1');
+      var n2=document.getElementById('id2');  
+      var n3=document.getElementById('id3'); 
+      var n4=document.getElementById('id4'); 
+      var n5=document.getElementById('id5'); 
+      var n6=document.getElementById('id6'); 
+      var n7=document.getElementById('id7'); 
+      var n8=document.getElementById('id8'); 
+      var n9=document.getElementById('id9'); 
+      var n10=document.getElementById('id10'); 
+
+      var regex_fname= /^[a-zA-Z]{2,}$/;
+      var regex_contact= /^[0-9]{10}$/;
+      var regex_pass = /^[a-zA-Z0-9!@#$%^&*_]{6,}$/;
+      n1.innerHTML='';
+      n2.innerHTML='';
+      n3.innerHTML="";
+      n4.innerHTML="";
+      n5.innerHTML="";
+      n6.innerHTML="";
+      n7.innerHTML="";
+      n8.innerHTML="";
+      n9.innerHTML="";
+      n10.innerHTML="";
+      var flag=true;
+      if(fname=='')
+      {
+        n1.innerHTML='Please enter FirstName';
+        flag= false;
+      }
+      if(lname=='')
+      {
+        n2.innerHTML='Please enter Lastname';
+        flag= false;
+      }
+      
+      if(username=='')
+      {
+        n3.innerHTML='Please enter Username';
+        flag= false;
+      }
+      
+      if(password=='')
+      {
+        n4.innerHTML='Please enter Password';
+        flag= false;
+      }
+       else
+	  {
+    	  if(regex_pass.test(password)==false)
+          {
+            n4.innerHTML='Password should be of Minimum 6 characters';
+            flag=false;
+          }
+	  } 
+      if(contact_no=='')
+      {
+        n5.innerHTML='Please enter ContactNo';
+        flag= false;
+      }
+       else
+      {
+	    if(regex_contact.test(contact_no)==false)
+	    {
+	         n5.innerHTML='Invalid Contact Number';
+	         flag=false;
+	    }
+      }
+      if(email=='')
+      {
+        n6.innerHTML='Please enter Email';
+        flag= false;
+      }
+      if(card_type=='')
+      {
+        n7.innerHTML='Please select Card';
+        flag= false;
+      }
+      if(bank=='')
+      {
+        n8.innerHTML='Please select Bank';
+        flag= false;
+      }
+      if(account_no=='')
+      {
+        n9.innerHTML='Please enter Account No';
+        flag= false;
+      }
+      if(ifsc=='')
+      {
+        n10.innerHTML='Please enter IFSC Code';
+        flag= false;
+      }
+   
+      return flag;
+  }
+</script>
+
+
+</head>
+<body>
+
+<div class="container">
+<div id="register"  class="animate form">
+<form action="register.do" method="post" >
+	<h1>Register Yourself </h1>
+
+<input type="text" name="fname" id="fname" placeholder="First Name" >
+<div id="id1"></div>
+
+<br>
+<input type="text" name="lname" id="lname" placeholder="Last Name" >
+<div id="id2"></div>
+
+<br>
+<input type="text" name="username" id="username" placeholder="UserName" >
+<div id="id3"></div>
+
+<br>
+<input type="password" name="password" id="password" placeholder="Password" >
+<div id="id4"></div>
+
+<br>
+<input type="text" name="contact" id="contact_no" placeholder="Contact Number" >
+<div id="id5"></div>
+
+<br>
+<input type="email" name="email" id="email" placeholder="Email-id" >
+<div id="id6"></div>
+
+<br>
+<textarea rows="5" cols="30" placeholder="Address" name="address"></textarea>
+
+<br>
+Card Type: <input type="radio" name="card_type" id="card_type" value="Gold">Gold
+           <input type="radio" name="card_type" id="card_type" value="Titatinum">Titanium
+ <div id="id7"></div>
+ 
+ <br><br>
+ Bank: <select name="bank" id="bank">
+ <option name="HDFC" id="HDFC" value="HDFC">HDFC
+  <option name="ICICI" id="ICICI" value="ICICI">ICICI
+   <option name="SBI" id="SBI" value="SBI">SBI
+    <option name="IDBI" id="IDBI" value="IDBI">IDBI
+    <option name="Axis" id="Axis" value="Axis">Axis
+ </select>          
+ <div id="id8"></div>
+ <br>
+ <input type="text" name="account_no" id="account_no" placeholder="Account Number">
+ <div id="id9"></div>
+ 
+ <br>
+ <input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code">
+ <div id="id10"></div>
+ 
+ <br>
+ <input type="submit" class="submit" onclick="return valid()" value="Submit">
+ 
+ </div>
+ 
+   </form>
+  </div>
+</body>
+</html>
