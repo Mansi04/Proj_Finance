@@ -160,17 +160,22 @@ public class UserController {
 	   ProdEmi prod = userservice.getProdDetails(pid);
 	   mav.addObject("prod",prod);
 	   System.out.println(pid);
-	   
-	   
-	 /*  
-	   Map modelMap = new HashMap();
-	   int cost = 0;
-	modelMap.put(cost,prod.getPcost()); 
-	   mav.addAllObjects(modelMap);*/
+	  
 	    return mav;
 	     }
 	
 	
+//---------------------------------------------------------------------------------------//
+	//PaymentProccess
+	
+	@RequestMapping(value = "/payment", method = RequestMethod.POST)
+	  public ModelAndView getPaymentDetails(HttpServletRequest request, HttpServletResponse response) {
+	    ModelAndView mav = new ModelAndView("payment");
+	    String emi = request.getParameter("emi");
+	    System.out.println(emi);
+	    	    
+	    return mav;
+	     }
 	
 	
 }

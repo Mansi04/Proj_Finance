@@ -1,5 +1,9 @@
 package com.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 public class ProdEmi {
 
 	private String pid;
@@ -12,6 +16,11 @@ public class ProdEmi {
 	private int sixMonEmi;
 	private int nineMonEmi;
 	private int twelveMonEmi;
+	/*
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="pid")
+	private EMI_Plan emi_Plan;*/
+	
 	public String getPid() {
 		return pid;
 	}

@@ -11,7 +11,11 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Repository;
 
 import com.model.Admin;
@@ -115,6 +119,8 @@ public class AdminDaoImpl implements AdminDaoIntf {
 				user.setBank(applicant.getBank());
 				user.setAccount_no(applicant.getAccount_no());
 				user.setIfsc(applicant.getIfsc());
+				//session.setAttribute("userid", user.getUser_id());
+				
 				
 				CardDetails cardDetails = new CardDetails();
 				cardDetails.setCard_no(card_no);
@@ -148,6 +154,8 @@ public class AdminDaoImpl implements AdminDaoIntf {
 		}
 		return result;
 	}
+
+	
 }
 
 

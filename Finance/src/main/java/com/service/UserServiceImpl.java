@@ -66,11 +66,43 @@ public class UserServiceImpl implements UserService {
 	public ProdEmi getProdDetails(String pid) {
 		Products products= userDao.getProdDetails(pid);
 		// business logic
+				
 		ProdEmi prodEmi = new ProdEmi();
 		prodEmi.setPid(products.getPid());
+		prodEmi.setPname(products.getPname());
+		prodEmi.setPcategory(products.getPcategory());
+		prodEmi.setP_desc(products.getP_desc());
+		prodEmi.setP_image(products.getP_image());
 		prodEmi.setPcost(products.getPcost());
-		prodEmi.setNineMonEmi(12000);
-		prodEmi.setSixMonEmi(3400);
+		
+		int cost = products.getPcost();
+		if(cost<50000){
+			
+			int threeEmi = cost/3;
+			prodEmi.setThreeMonEmi(threeEmi);
+			int sixEmi = cost/6;
+			prodEmi.setSixMonEmi(sixEmi);
+			
+		}else if(cost>50000 && cost<70000){
+			int threeEmi = cost/3;
+			prodEmi.setThreeMonEmi(threeEmi);
+			int sixEmi = cost/6;
+			prodEmi.setSixMonEmi(sixEmi);
+			int nineEmi = cost/9;
+			prodEmi.setNineMonEmi(nineEmi);
+			
+		}else{
+			int threeEmi = cost/3;
+			prodEmi.setThreeMonEmi(threeEmi);
+			int sixEmi = cost/6;
+			prodEmi.setSixMonEmi(sixEmi);
+			int nineEmi = cost/9;
+			prodEmi.setNineMonEmi(nineEmi);
+			int twelveEmi = cost/12;
+			prodEmi.setTwelveMonEmi(twelveEmi);
+		}
+		
+	
 		return prodEmi;
 	}
 

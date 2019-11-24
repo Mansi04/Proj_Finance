@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,6 +30,10 @@ public class User {
 	@OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private CardDetails cardDetails;
+	
+	/*@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private EMI_Plan emi_Plan;*/
 	
 	public String getUser_id() {
 		return user_id;

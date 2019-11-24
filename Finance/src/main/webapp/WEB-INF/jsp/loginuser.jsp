@@ -50,9 +50,15 @@ function valid(){
 <!-- Validation end  for Login -->
 </head>
 <body>
+
+
+
+
  <div class="dash">
 	<%@ include file="loginUsermenu.html" %>
 </div>
+	
+
 <div id="adminlogin">
     <center>Login For User</center>
 	<form modelAttribute="user"  action="loginProcess.do"	method="post" onsubmit="return valid();">
