@@ -1,5 +1,8 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,9 +34,10 @@ public class User {
 	@JoinColumn(name="user_id")
 	private CardDetails cardDetails;
 	
-	/*@OneToMany(cascade= CascadeType.ALL)
+	//one user can hold many emiplans
+	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="user_id")
-	private EMI_Plan emi_Plan;*/
+	private List<EMI_Plan> emi_Plan =  new ArrayList<EMI_Plan>();
 	
 	public String getUser_id() {
 		return user_id;
@@ -107,6 +111,14 @@ public class User {
 	}
 	public void setCardDetails(CardDetails cardDetails) {
 		this.cardDetails = cardDetails;
+	}
+	
+	
+	public List<EMI_Plan> getEmi_Plan() {
+		return emi_Plan;
+	}
+	public void setEmi_Plan(List<EMI_Plan> emi_Plan) {
+		this.emi_Plan = emi_Plan;
 	}
 	public User(String user_id, String fname, String lname, String email, String username, String password,
 			String address, String card_type, String bank, String account_no, String ifsc) {

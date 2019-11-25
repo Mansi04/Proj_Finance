@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.EMI_Plan;
+import com.model.Installment;
 import com.model.ProdEmi;
 import com.model.Products;
+import com.model.User;
 import com.model.Users;
 import com.service.UserService;
 import com.service.UserServiceImpl;
@@ -102,7 +105,11 @@ public class UserController {
 
 	  @RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	  public ModelAndView loginProcess(@ModelAttribute Users user, HttpSession session) {
-		  System.out.println(user.getUsername()+"\n"+user.getPassword());	    
+		  System.out.println(user.getUsername()+"\n"+user.getPassword());	  
+		  /*if(user.getStatus().equalsIgnoreCase("pending"))
+		  {
+			  ModelAndView mav = new ModelAndView();
+		  }*/
 	     boolean flag = userservice.validateUser(user);
 	     
 	       if(flag) {
@@ -110,6 +117,7 @@ public class UserController {
 	    	   mav.addObject("status","Login Success");
 	    	   //session manage
 	    	   session.setAttribute("username", user.getUsername());
+	    	   
 	    	   mav.setViewName("Welcome");
 	    	   return mav;
     }
@@ -157,6 +165,7 @@ public class UserController {
 	  public ModelAndView getProdDetails(HttpServletRequest request, HttpServletResponse response) {
 	    ModelAndView mav = new ModelAndView("prodDetails");
 	   String pid = request.getParameter("pid");
+	   String emi =  request.getParameter("emi");
 	   ProdEmi prod = userservice.getProdDetails(pid);
 	   mav.addObject("prod",prod);
 	   System.out.println(pid);
@@ -172,10 +181,28 @@ public class UserController {
 	  public ModelAndView getPaymentDetails(HttpServletRequest request, HttpServletResponse response) {
 	    ModelAndView mav = new ModelAndView("payment");
 	    String emi = request.getParameter("emi");
-	    System.out.println(emi);
+	    String user_id = request.getParameter("user_id");
+	    String pcost = request.getParameter("pcost");    
+	    EMI_Plan emi_Plan= userservice.getEmiplan(emi,pcost);
+	    
+	    
+	    System.out.println("Controller called"+emi_Plan.getInstallment_amt());
+	    
+	    
+	    mav.addObject("emi_Plan",emi_Plan);
 	    	    
 	    return mav;
 	     }
-	
+	//-------------------------------------------------------------------------------------------//
+	//showing user history of its installments
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	  public ModelAndView getUserInstallmentHistory(HttpServletRequest request, HttpServletResponse response) {
+	    ModelAndView mav = new ModelAndView("installHistory");
+	    List<Object[]>  installments = userservice.getUserInstallmentHistory();
+	    mav.addObject("installments", installments);
+	    
+	    System.out.println("Controller called"+installments);
+	    return mav;
+	     }
 	
 }

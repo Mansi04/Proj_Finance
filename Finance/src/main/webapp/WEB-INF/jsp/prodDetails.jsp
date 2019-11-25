@@ -60,14 +60,17 @@
 	{
 %> --%>
 <form action="payment.do" method="post">
+<input type="hidden" name="pid" value="${prod.pid}">
+<input type="hidden" name="user_id" value="${ulist.app_id}">
+<input type="hidden" name="pcost" value="${prod.pcost}">
 <c:if test="${prod.pcost < 50000}">
 	<tr>
 	<div id="6mon">
-	<td><input type="radio" name="emi" value="three_mon">  3 months </td>
+	<td><input type="radio" name="emi" value="3:${prod.threeMonEmi}">  3 months </td>
 	 <td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
 	
-	<td><input type="radio" name="emi" value="six_mon">  6 months </td> 
+	<td><input type="radio" name="emi" value="6:${prod.sixMonEmi }">  6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	</div>
 	</c:if>
@@ -75,29 +78,29 @@
 <div id="9mon">
 
 <tr>
-	<td> <input type="radio" name="emi" value="three_mon"> 3 months </td> 
+	<td> <input type="radio" name="emi" value="3:${prod.threeMonEmi}"> 3 months </td> 
 	<td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
 	<td>
-	<input type="radio" name="emi" value="six_mon">6 months </td> 
+	<input type="radio" name="emi" value="6:${prod.sixMonEmi}">6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="nine_mon"> 9 months </td> 
+	<td> <input type="radio" name="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
 	<td>${prod.nineMonEmi }</td> <td>${prod.pcost}</td></tr></div>
 </c:if>
 <c:if test="${prod.pcost > 70000 }">
 	<div id="12mon">
 	<tr>
-	<td> <input type="radio" name="emi" value="three_mon"> 3 months </td> 
+	<td> <input type="radio" name="emi" value="3:${prod.threeMonEmi }"> 3 months </td> 
 	<td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="six_mon"> 6 months </td> 
+	<td> <input type="radio" name="emi" value="6:${prod.sixMonEmi}"> 6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="nine_mon"> 9 months </td> 
+	<td> <input type="radio" name="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
 	<td>${prod.nineMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="twelve_mon"> 12 months </td> 
+	<td> <input type="radio" name="emi" value="12:${prod.twelveMonEmi}"> 12 months </td> 
 	<td>${prod.twelveMonEmi }</td> <td>${prod.pcost}</td></tr></div>
 
 

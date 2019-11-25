@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import com.model.EMI_Plan;
+import com.model.Installment;
 import com.model.ProdEmi;
 import com.model.Products;
 import com.model.Users;
@@ -15,5 +17,6 @@ public interface UserService {
 	public boolean validateUser(Users user);
 	public Users getStatusbyId(String app_id);
 	public ProdEmi getProdDetails(String pid);
-	
+	public EMI_Plan getEmiplan(String emi,String pcost);
+	public List<Object[]>  getUserInstallmentHistory();
 }

@@ -1,17 +1,24 @@
 package com.dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.model.EMI_Plan;
+import com.model.Installment;
 import com.model.Products;
+import com.model.User;
 import com.model.Users;
 
 @Repository("userDao")
@@ -128,10 +135,86 @@ public class UserDaoImpl implements UserDao{
 	public Products getProdDetails(String pid) {
 		Products prod = (Products) em.createQuery("select p from Products p where p.pid=:pid")
 				.setParameter("pid", pid).getSingleResult();
+		/*User user = em.find(User.class, user_id);
+		Products products=  em.find(Products.class, pid);
+		EMI_Plan emi_Plan=new EMI_Plan();
+		
+			user.setEmi_Plan(emi_Plan);
+			products.setEmi_Plan(emi_Plan);
+				em.persist(user);
+				em.persist(prod);*/
+		
 		return prod;
 	}
+
+
+	public EMI_Plan getEmiplan(String emi,String pcost) {
+		EMI_Plan emi_Plan=new EMI_Plan();
+		
+		  String emis[] = emi.split(":"); //[0]  plan [1] cost
+		    emi_Plan.setTenure(emis[0]);
+		    emi_Plan.setInstallment_amt(Integer.parseInt(emis[1]));
+		    emi_Plan.setS_date(new Date());
+		    emi_Plan.setE_date(new Date());
+		    emi_Plan.setPcost(Integer.parseInt(pcost));
+
+		    Date date = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			int emi1 = (Integer.parseInt(emis[0]));
+			cal.add(Calendar.MONTH, emi1);
+			Date expirationDate = cal.getTime();
+			emi_Plan.setE_date(expirationDate);
+		    
+		    User user = new User();
+		    user.setUser_id("U1574504043511"); // take from sesion
+		    emi_Plan.setUser(user);
+		    System.out.println(emi_Plan.getTenure());
+		
+			String emi_no = "E"+new Date().getTime();
+			emi_Plan.setEmi_no(emi_no);
+		
+			
+			
+			// making entries into Installments table
+			for(int i=1; i<=emi1; i++){
+				Date date1 = new Date();
+				Calendar c = Calendar.getInstance();
+				c.setTime(date1);
+   			    c.add(Calendar.MONTH, i);
+				Date dd = c.getTime();
+				
+				Installment installment = new Installment();
+				/*String inst = "I"+new Date().getTime();
+				installment.setInstallment_no(inst);*/
+				installment.setEmi_Plan(emi_Plan);
+				installment.setDue_date(dd);
+				installment.setNo_installments(i);
+				installment.setInstall_amt(Integer.parseInt(emis[1]));
+				emi_Plan.getEmi_Plan().add(installment);
+				installment.setEmi_Plan(emi_Plan);
+
+			}
 	
-	// 
+			em.persist(emi_Plan);			
+			//System.out.println(emi_Plan.getInstallment_amt());
+			System.out.println("DAO CALLEd"+emi_Plan);
+		return emi_Plan;
+	}
+
+	
+	
+	// --------------------------------------------------------------------------------------------------//
+	// Getting history of user installments
+	public List<Object[]>  getUserInstallmentHistory(){
+		
+	
+			String sql = "select i.* from Installment i, Emi_Plan e where i.emi_no = e.emi_no";
+			List<Object[]> users = em.createNativeQuery(sql).getResultList();
+			System.out.println("Dao Called"+users);
+			return users;
+		
+	}
 	
 	
 

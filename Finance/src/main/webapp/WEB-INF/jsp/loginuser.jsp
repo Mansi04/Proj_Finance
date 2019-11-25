@@ -21,7 +21,7 @@ function valid(){
       var n3=document.getElementById('id3');  
       n3.innerHTML="";
 
-      var regex_uname= /^[a-zA-Z]{5,}$/;
+      var regex_uname= /^[a-zA-Z0-9]{5,}$/;
       n1.innerHTML='';
       n2.innerHTML='';
       var flag=true;

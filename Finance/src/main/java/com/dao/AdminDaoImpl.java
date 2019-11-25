@@ -141,14 +141,12 @@ public class AdminDaoImpl implements AdminDaoIntf {
 				{
 					cardDetails.setCredit_limit(250000);
 					cardDetails.setCredit_remaining(250000);
-				}
-				
+				}				
 				cardDetails.setCredit_used(0);
 				cardDetails.setCredit_remaining(0);
 				
 				user.setCardDetails(cardDetails);
-				em.persist(user);
-				
+				em.persist(user);				
 			}
 			
 		}
