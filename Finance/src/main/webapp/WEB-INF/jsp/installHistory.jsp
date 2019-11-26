@@ -14,13 +14,14 @@
 </div>
 
 <center>
-<table>
+<table border="1" >
 
-<h3><b>History </b> </h3>
-<tr><th> Installment No</th>  <th>EMI No</th> <th>Number of Installments</th> <th>Installment Amount</th> <th>Due Date</th></tr>
+<h3><b>EMI Plans History </b> </h3>
+<tr><th>EMI No</th> <th>Tenure</th> <th>Start Date</th> <th>End Date</th></tr>
 <c:forEach items="${installments}" var="install">
 
-<tr><td>${install[0] }</td> <td>${install[1] }</td> <td>${install[2] }</td> <td>${install[3] }</td><td>${install[4]}</td></tr>
+<tr><td>${install[0] }</td> <td>${install[3] }</td> <td>${install[5] }</td> <td>${install[6] }</td><td><a href="installhistory.do?emi_no=${install[0]}">Get Details</a></td></tr>
+
 <tr></tr>
 
 </c:forEach>

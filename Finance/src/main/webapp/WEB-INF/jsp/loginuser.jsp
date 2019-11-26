@@ -64,8 +64,8 @@ function valid(){
 	<form modelAttribute="user"  action="loginProcess.do"	method="post" onsubmit="return valid();">
 		<table align="center">
 			<tr>
-				<td>Username: </td>
-				<td><input type="text" name="username" id="username" />
+				<td>Emailid : </td>
+				<td><input type="text" name="email" id="email" />
 				<div id="id1"></div>
 				</td>
 				

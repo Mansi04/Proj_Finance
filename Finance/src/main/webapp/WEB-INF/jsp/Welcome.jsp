@@ -13,7 +13,7 @@
 	<%@ include file="menuUser.html" %>
 </div>
 
-Welcome ${username}
+Welcome ${user_id}
 ${status}
 
 	

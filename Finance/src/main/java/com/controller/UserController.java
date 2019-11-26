@@ -104,20 +104,19 @@ public class UserController {
 	     }
 
 	  @RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
-	  public ModelAndView loginProcess(@ModelAttribute Users user, HttpSession session) {
-		  System.out.println(user.getUsername()+"\n"+user.getPassword());	  
-		  /*if(user.getStatus().equalsIgnoreCase("pending"))
-		  {
-			  ModelAndView mav = new ModelAndView();
-		  }*/
-	     boolean flag = userservice.validateUser(user);
+	  public ModelAndView loginProcess(@ModelAttribute User user, HttpSession session) {
+		  System.out.println(user.getEmail()+"\n"+user.getPassword());	  
+		
+	     User flag = userservice.validateUser(user);
 	     
-	       if(flag) {
+	       if(flag!=null) {
+	    	   System.out.println("flag="+flag);
+	    	   
 	    	   ModelAndView mav = new ModelAndView();
 	    	   mav.addObject("status","Login Success");
 	    	   //session manage
-	    	   session.setAttribute("username", user.getUsername());
-	    	   
+	    	   session.setAttribute("user", flag);
+	    	   System.out.println(flag.getUser_id()+"Session");
 	    	   mav.setViewName("Welcome");
 	    	   return mav;
     }
@@ -178,12 +177,14 @@ public class UserController {
 	//PaymentProccess
 	
 	@RequestMapping(value = "/payment", method = RequestMethod.POST)
-	  public ModelAndView getPaymentDetails(HttpServletRequest request, HttpServletResponse response) {
+	  public ModelAndView getPaymentDetails(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 	    ModelAndView mav = new ModelAndView("payment");
 	    String emi = request.getParameter("emi");
 	    String user_id = request.getParameter("user_id");
 	    String pcost = request.getParameter("pcost");    
-	    EMI_Plan emi_Plan= userservice.getEmiplan(emi,pcost);
+	    
+	    User user =(User)session.getAttribute("user");
+	    EMI_Plan emi_Plan= userservice.getEmiplan(emi,pcost,user);
 	    
 	    
 	    System.out.println("Controller called"+emi_Plan.getInstallment_amt());
@@ -194,14 +195,31 @@ public class UserController {
 	    return mav;
 	     }
 	//-------------------------------------------------------------------------------------------//
-	//showing user history of its installments
-	@RequestMapping(value = "/history", method = RequestMethod.GET)
-	  public ModelAndView getUserInstallmentHistory(HttpServletRequest request, HttpServletResponse response) {
+	
+	@RequestMapping(value = "/emihistory", method = RequestMethod.GET)
+	  public ModelAndView getUserEmiHistory(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	    ModelAndView mav = new ModelAndView("installHistory");
-	    List<Object[]>  installments = userservice.getUserInstallmentHistory();
+	    User user =(User)session.getAttribute("user");
+	    List<Object[]>  installments = userservice.getUserEmiHistory(user);
 	    mav.addObject("installments", installments);
 	    
 	    System.out.println("Controller called"+installments);
+	    return mav;
+	     }
+	
+	//------------------------------------------------------------------------------------------------------------------------//
+	
+	//showing user history of its installments
+	@RequestMapping(value = "/installhistory", method = RequestMethod.GET)
+	  public ModelAndView getUserInstallmentHistory(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	    ModelAndView mav = new ModelAndView("History");
+	    User user =(User)session.getAttribute("user");
+	    String emino = request.getParameter("emi_no");
+	    System.out.println(emino+"EMI NO");
+	    List<Object[]>  installH = userservice.getUserInstallmentHistory(user,emino);
+	    mav.addObject("installH", installH);
+	    
+	    System.out.println("Controller called"+installH);
 	    return mav;
 	     }
 	

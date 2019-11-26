@@ -138,6 +138,13 @@ public class User {
 	public User() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", username="
+				+ username + ", password=" + password + ", address=" + address + ", card_type=" + card_type + ", bank="
+				+ bank + ", account_no=" + account_no + ", ifsc=" + ifsc + ", cardDetails=" + cardDetails
+				+ ", emi_Plan=" + emi_Plan + "]";
+	}
 	
 	
 	

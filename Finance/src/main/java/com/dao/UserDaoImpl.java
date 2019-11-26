@@ -27,26 +27,20 @@ public class UserDaoImpl implements UserDao{
 	@PersistenceContext
 	EntityManager em;
 	
+	//-------------------------------------User Registration---------------------------------------------//
 	public boolean registerUser(Users users) {
 		boolean result= false;
 		try {
 			em.persist(users);
-			System.out.println("in persist");
-		/*	em.getTransaction().commit();*/
-			System.out.println("in commit");		
-			result=true;
-				
+			result=true;				
 		} catch (Exception e) {
 			
 			System.out.println(e);
-			System.out.println("User already registered");
-		}
-			
-		return result;
-		
+		}			
+		return result;		
 	}
 	
-	//view all products
+	//-------------------------------------Getting all Products---------------------------------------------//
 	public List<Products> getAllProducts(){
 		System.out.println("DAO called");
 		Products p = null;
@@ -63,8 +57,8 @@ public class UserDaoImpl implements UserDao{
 		}
 		return mlist;
 	}
-
-	//view all members for admin
+	
+	//-------------------------------------Getting all Members List who are approved---------------------------------------------//
 	public List<Users> getAllMembers() {
 		System.out.println("DAO called");
 		Users u = null;
@@ -80,31 +74,27 @@ public class UserDaoImpl implements UserDao{
 		return ulist;
 	}
 
-	public boolean validateUser(Users user) {
+	//-------------------------------------Validating User for Login---------------------------------------------//
+	public User validateUser(User user) {
 		boolean flag=false;
 		
-		Users f =null;
+		User f =null;
 		try{
 			
-			f=(Users)em.createQuery("SELECT f FROM Users f WHERE f.username=:uname and f.password=:pwd")
-		         .setParameter("uname", user.getUsername())
-		         .setParameter("pwd",user.getPassword())
+			f=(User)em.createQuery("SELECT f FROM User f WHERE f.email=:email and f.password=:password")
+		         .setParameter("email", user.getEmail())
+		         .setParameter("password",user.getPassword())
 		         .getSingleResult();
 			System.out.println(f);
-		/*	f=em.find(Users.class, user.getUsername()); */
 			if(f!=null){
-				//if(f.getPassword().equals(user.getPassword()))
 					flag=true;
 			}
-			/*em.close();*/
-			
 		}
 		catch(Exception e) {System.out.println(e); }
-		
-		System.out.println(f);
-		return flag;
+		return f;
 		}
 
+	//-------------------------------------Change Password for User---------------------------------------------//
 	public boolean changepasswrd(String username, String opwd, String npwd) {
 		boolean flag=false;
 		
@@ -121,8 +111,7 @@ public class UserDaoImpl implements UserDao{
 		  return flag;
 	  }
 
-	// Tracking user application status
-	
+	//-------------------------------------Get Status of Applicants---------------------------------------------//
 	public Users getStatusbyId(String app_id) {
 		@SuppressWarnings("unchecked")
 		Users user = (Users) em.createQuery("select u from Users u where u.app_id=:app_id")
@@ -130,25 +119,17 @@ public class UserDaoImpl implements UserDao{
 		return user;
 	}
 
-	// Viewing particular product's details
+	//-------------------------------------Getting Product Details and Calculating Emi Based on Cost of Product---------------------------------------------//
 	
 	public Products getProdDetails(String pid) {
 		Products prod = (Products) em.createQuery("select p from Products p where p.pid=:pid")
 				.setParameter("pid", pid).getSingleResult();
-		/*User user = em.find(User.class, user_id);
-		Products products=  em.find(Products.class, pid);
-		EMI_Plan emi_Plan=new EMI_Plan();
-		
-			user.setEmi_Plan(emi_Plan);
-			products.setEmi_Plan(emi_Plan);
-				em.persist(user);
-				em.persist(prod);*/
 		
 		return prod;
 	}
 
-
-	public EMI_Plan getEmiplan(String emi,String pcost) {
+	//-------------------------------------Getting Emi Plan for a User ---------------------------------------------//
+	public EMI_Plan getEmiplan(String emi,String pcost, User user) {
 		EMI_Plan emi_Plan=new EMI_Plan();
 		
 		  String emis[] = emi.split(":"); //[0]  plan [1] cost
@@ -166,9 +147,9 @@ public class UserDaoImpl implements UserDao{
 			Date expirationDate = cal.getTime();
 			emi_Plan.setE_date(expirationDate);
 		    
-		    User user = new User();
-		    user.setUser_id("U1574504043511"); // take from sesion
-		    emi_Plan.setUser(user);
+		  /*  User user = new User();
+		    user.setUser_id("user_id"); // take from sesion
+*/		    emi_Plan.setUser(user);
 		    System.out.println(emi_Plan.getTenure());
 		
 			String emi_no = "E"+new Date().getTime();
@@ -206,16 +187,26 @@ public class UserDaoImpl implements UserDao{
 	
 	// --------------------------------------------------------------------------------------------------//
 	// Getting history of user installments
-	public List<Object[]>  getUserInstallmentHistory(){
+	public List<Object[]>  getUserInstallmentHistory(User user,String emino){
 		
-	
-			String sql = "select i.* from Installment i, Emi_Plan e where i.emi_no = e.emi_no";
-			List<Object[]> users = em.createNativeQuery(sql).getResultList();
+			//select i.* from Installment i, Emi_Plan e where i.emi_no=e.emi_no
+			String sql = "select * from Installment where emi_no=:emino";
+			List<Object[]> users = em.createNativeQuery(sql).setParameter("emino",emino).getResultList();
 			System.out.println("Dao Called"+users);
 			return users;
 		
 	}
 	
+	public List<Object[]>  getUserEmiHistory(User user){
+		
+		//.setParameter("uid", user.getUser_id())
+		/*String sql = "select i.* from EMI_Plan i where i.user.user_id =:uid";*/
+		String sql = "select i.* from EMI_Plan I,Users u where i.user_id=:uid and u.user_id=:uid";
+		List<Object[]> users = em.createNativeQuery(sql).setParameter("uid", user.getUser_id()).getResultList();
+		System.out.println("Dao Called"+users);
+		return users;
+	
+}
 	
 
 }
