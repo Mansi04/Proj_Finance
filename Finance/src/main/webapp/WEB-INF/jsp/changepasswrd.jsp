@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <title>Change Password </title>
 </head>
 <body>
 
-<div class="dash">
 	<%@ include file="menuUser.html" %>	
-</div>
 
-<div class="column side2">
+
+<div style="margin-top: 150px">
     <center>Password Update</center>
 	<form id="changepasswrd"  action="changepasswrd.do"	method="post">
 		<table align="center">

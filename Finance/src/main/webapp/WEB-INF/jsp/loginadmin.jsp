@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>Admin Login</title>
 </head>
 <body>
 
-<div class="dash">
+
 	<%@ include file="loginUsermenu.html" %>	
-</div>
+
 <div id="adminlogin" class="animate form">
     <center>Login For Admin</center>
 	<form modelAttribute="admin"  action="adminProcess.do"	method="post">

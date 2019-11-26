@@ -32,8 +32,7 @@ public class AdminController {
 	    return mav;
 	     }
 	 @RequestMapping(value = "/adminProcess", method = RequestMethod.POST)
-	  public ModelAndView adminProcess( @ModelAttribute Admin admin, HttpSession session) {	 
-		 System.out.println(admin.getUsername()+"\n"+admin.getPassword());    
+	  public ModelAndView adminProcess( @ModelAttribute Admin admin, HttpSession session) {	    
 	     boolean flag = adminService.validateAdmin(admin);
 	     ModelAndView mav = new ModelAndView();
 	     if(flag) {
@@ -61,7 +60,6 @@ public class AdminController {
       String username=(String)session.getAttribute("username");
       String opwd= request.getParameter("opassword");
       String npwd= request.getParameter("npassword");
-      System.out.println(username+"  "+opwd+"  "+npwd);
       boolean flag = adminService.changepasswrd(username,opwd,npwd);
       if(flag) {
 	       ModelAndView mav = new ModelAndView("adchngepass");
@@ -87,9 +85,20 @@ public class AdminController {
 		 ModelAndView mav = new ModelAndView();
 		 String app_id = request.getParameter("app_id");
 		 Users ulist = adminService.getApplicantDetailsbyId(app_id);
-		 mav.addObject("ulist",ulist);
-		 mav.setViewName("viewDetails");
-		 return mav;
+		 if(ulist!=null)
+		 {
+			 mav.addObject("ulist",ulist);
+			 mav.setViewName("viewDetails");
+			 return mav;
+		 }
+		 else
+		 {
+			 mav.addObject("status", "User Already Approved");
+			 mav.setViewName("home2");
+			 return mav;
+		 }
+		
+		
      }
 	 
 	//Viewing all Users

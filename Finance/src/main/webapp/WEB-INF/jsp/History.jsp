@@ -7,16 +7,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<div class="dash">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
+<title>Installments</title>
+
 	<%@ include file="menuUser.html" %>	
-</div>
+
 </head>
 <body>
 
 <center>
 <table>
-
+<div style="margin-top: 100px">
 <h3><b>Installment History </b> </h3>
 <tr><th>Installment No</th> <th>Emi No</th> <th>Number of Installments</th> <th>Installment Amount <th>Due Date</th></tr>
 

@@ -15,6 +15,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.model.CardDetails;
 import com.model.EMI_Plan;
 import com.model.Installment;
 import com.model.Products;
@@ -47,9 +48,7 @@ public class UserDaoImpl implements UserDao{
 		List<Products> mlist =new ArrayList<Products>();
 		try{
 			List<Products> products = em.createQuery("select p from Products p").getResultList();
-			return products;
-			
-			
+			return products;		
 		}
 		catch(Exception e)
 		{
@@ -98,16 +97,14 @@ public class UserDaoImpl implements UserDao{
 	public boolean changepasswrd(String username, String opwd, String npwd) {
 		boolean flag=false;
 		
-		  Query query = em.createQuery("update Users u set u.password=:npwd where u.username=:username and u.password=:opwd");
+		  Query query = em.createQuery("update User u set u.password=:npwd where u.username=:username and u.password=:opwd");
 		  query.setParameter("npwd", npwd);
 		  query.setParameter("opwd", opwd);
 		  query.setParameter("username", username);
 		   int r = query.executeUpdate();
-		/*  em.getTransaction().commit();*/
-		  System.out.println("working");
-		 // em.close();
 		  if(r>0)
 			  flag=true;
+		  System.out.println(flag);
 		  return flag;
 	  }
 
@@ -132,7 +129,7 @@ public class UserDaoImpl implements UserDao{
 	public EMI_Plan getEmiplan(String emi,String pcost, User user) {
 		EMI_Plan emi_Plan=new EMI_Plan();
 		
-		  String emis[] = emi.split(":"); //[0]  plan [1] cost
+		  String emis[] = emi.split(":");
 		    emi_Plan.setTenure(emis[0]);
 		    emi_Plan.setInstallment_amt(Integer.parseInt(emis[1]));
 		    emi_Plan.setS_date(new Date());
@@ -147,15 +144,15 @@ public class UserDaoImpl implements UserDao{
 			Date expirationDate = cal.getTime();
 			emi_Plan.setE_date(expirationDate);
 		    
-		  /*  User user = new User();
-		    user.setUser_id("user_id"); // take from sesion
-*/		    emi_Plan.setUser(user);
-		    System.out.println(emi_Plan.getTenure());
+		
+			emi_Plan.setUser(user);
 		
 			String emi_no = "E"+new Date().getTime();
 			emi_Plan.setEmi_no(emi_no);
 		
-			
+			//deducting card limit for card details
+			String sql = "update CardDetails c set c.credit_remaining= c.credit_remaining -:cost where c.user_id=:userid";
+			Query query=em.createNativeQuery(sql).setParameter("cost", pcost).setParameter("userid", user);
 			
 			// making entries into Installments table
 			for(int i=1; i<=emi1; i++){
@@ -166,20 +163,15 @@ public class UserDaoImpl implements UserDao{
 				Date dd = c.getTime();
 				
 				Installment installment = new Installment();
-				/*String inst = "I"+new Date().getTime();
-				installment.setInstallment_no(inst);*/
 				installment.setEmi_Plan(emi_Plan);
 				installment.setDue_date(dd);
 				installment.setNo_installments(i);
 				installment.setInstall_amt(Integer.parseInt(emis[1]));
 				emi_Plan.getEmi_Plan().add(installment);
 				installment.setEmi_Plan(emi_Plan);
-
 			}
 	
 			em.persist(emi_Plan);			
-			//System.out.println(emi_Plan.getInstallment_amt());
-			System.out.println("DAO CALLEd"+emi_Plan);
 		return emi_Plan;
 	}
 
@@ -189,21 +181,17 @@ public class UserDaoImpl implements UserDao{
 	// Getting history of user installments
 	public List<Object[]>  getUserInstallmentHistory(User user,String emino){
 		
-			//select i.* from Installment i, Emi_Plan e where i.emi_no=e.emi_no
 			String sql = "select * from Installment where emi_no=:emino";
 			List<Object[]> users = em.createNativeQuery(sql).setParameter("emino",emino).getResultList();
-			System.out.println("Dao Called"+users);
+		
 			return users;
 		
 	}
 	
 	public List<Object[]>  getUserEmiHistory(User user){
-		
-		//.setParameter("uid", user.getUser_id())
-		/*String sql = "select i.* from EMI_Plan i where i.user.user_id =:uid";*/
 		String sql = "select i.* from EMI_Plan I,Users u where i.user_id=:uid and u.user_id=:uid";
 		List<Object[]> users = em.createNativeQuery(sql).setParameter("uid", user.getUser_id()).getResultList();
-		System.out.println("Dao Called"+users);
+		
 		return users;
 	
 }

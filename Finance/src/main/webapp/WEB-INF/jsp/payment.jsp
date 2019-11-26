@@ -4,13 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <title>Payment</title>
 </head>
 <body>
-
+<table>
+	<%@ include file="menuUser.html" %>	
+<div style="margin-top: 100px;margin-left: 150px;">
 <% String emiplan = request.getParameter("emi");
-out.println(emiplan);
+	String emis[] = emiplan.split(":");
 %>
+	<tr><th><%out.println("\nTenure - "+emis[0]);%></th></tr>
 
+	<tr><th><%out.println("\nInstallment Amount- "+emis[1]);%></th></tr>
+
+</div>	
+</table>
 </body>
 </html>

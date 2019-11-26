@@ -21,7 +21,7 @@ public class FileController {
     {
 		String fileName=request.getParameter("fileName"); 
         String dataDirectory = System.getProperty("catalina.home")+ File.separator + "tmpFiles"; 
-        System.out.println(fileName+"  "+dataDirectory);
+       
         Path file = Paths.get(dataDirectory, fileName);
         if (Files.exists(file)) 
         {

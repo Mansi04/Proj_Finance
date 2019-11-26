@@ -7,14 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <title>Products</title>
 </head>
 <body>
-<div class="dash">
+
 	<%@ include file="menuUser.html" %>	
-</div>
+
 <c:forEach items="${plist}" var="products">
-<div>
+<div style="margin-top: 100px">
 <table>
 <tr>
 <td>

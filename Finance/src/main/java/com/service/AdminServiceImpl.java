@@ -16,30 +16,24 @@ public class AdminServiceImpl implements AdminServiceIntf {
 
 	@Transactional
 	public boolean validateAdmin(Admin admin) {
-		System.out.println("service called");
 		boolean flag=adminDao.validateAdmin(admin);
-		System.out.println(flag);
 		return flag;
 	}
 	
 	@Transactional
 	public boolean changepasswrd(String username, String opwd, String npwd) {
-		System.out.println("service called");
 		boolean flag=adminDao.changepasswrd(username, opwd, npwd);
-		System.out.println(flag);
 		 return flag;
 	}
 
 	@Transactional
 	public List<Users> getAllMembers() {
 		List<Users> ulist = adminDao.getAllMembers();
-		System.out.println("Service called");
 		return ulist;
 	}
 	
 	@Transactional
 	public Users getApplicantDetailsbyId(String app_id) {
-		System.out.println("Service called");
 		return adminDao.getApplicantDetailsbyId(app_id);
 	}
 

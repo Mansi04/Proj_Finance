@@ -26,9 +26,7 @@ public class UserServiceImpl implements UserService {
 	//-------------------------------------User Registration---------------------------------------------//
 	@Transactional
 	public boolean registerUser(Users users) {
-		System.out.println("Service called");
 		boolean flag= userDao.registerUser(users);
-		System.out.println(flag);
 		return flag;
 		
 	}
@@ -37,7 +35,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<Products> getAllProducts() {
 		List<Products> plist = userDao.getAllProducts();
-		System.out.println("Service called");
 		return plist;
 	}
 	
@@ -45,31 +42,25 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<Users> getAllMembers() {
 		List<Users> ulist = userDao.getAllMembers();
-		System.out.println("Service called");
 		return ulist;
 	}
 	//-------------------------------------Change Password for User---------------------------------------------//
 	@Transactional
 	public boolean changepasswrd(String username, String opwd, String npwd) {
-		System.out.println("service called");
 		boolean flag=userDao.changepasswrd(username, opwd, npwd);
-		System.out.println(flag);
 		 return flag;
 	}
 	
 	//-------------------------------------Validating User for Login---------------------------------------------//
 	@Transactional
 	public User validateUser(User user) {
-		System.out.println("service called");
 		User flag=userDao.validateUser(user);
-		System.out.println(flag);
 		return flag;
 	}
 
 	//-------------------------------------Get Status of Applicants---------------------------------------------//
 	@Transactional
 	public Users getStatusbyId(String app_id) {
-		System.out.println("Service called");
 		return userDao.getStatusbyId(app_id);
 		
 	}
@@ -80,7 +71,6 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 
 		String user_id = user.getUser_id();
-		System.out.println("Service Called"+user_id);
 		Products products= userDao.getProdDetails(pid);
 		// business logic
 				
@@ -129,12 +119,8 @@ public class UserServiceImpl implements UserService {
 	//-------------------------------------Getting Emi Plan for a User ---------------------------------------------//
 	@Transactional
 	public EMI_Plan getEmiplan(String emi,String pcost, User user) {
-		EMI_Plan emi_Plan=new EMI_Plan();
-		
-
-		emi_Plan = userDao.getEmiplan(emi,pcost,user);
-		System.out.println(emi_Plan.getInstallment_amt());
-		System.out.println("Service Called"+emi_Plan);
+		EMI_Plan emi_Plan=new EMI_Plan();	
+		emi_Plan = userDao.getEmiplan(emi,pcost,user);	
 		return emi_Plan;
 	}
 
@@ -143,8 +129,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<Object[]>  getUserInstallmentHistory(User user,String emino) {
 		List<Object[]>  installments = userDao.getUserInstallmentHistory(user,emino);
-		System.out.println("Service called"+installments);
-		System.out.println("Service Called"+emino);
 		return installments;
 	}
 

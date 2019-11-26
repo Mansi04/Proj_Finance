@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -40,6 +41,8 @@ function valid(){
       var regex_fname= /^[a-zA-Z]{2,}$/;
       var regex_contact= /^[0-9]{10}$/;
       var regex_pass = /^[a-zA-Z0-9!@#$%^&*_]{6,}$/;
+      var regex_email=/^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*
+          @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$/;
       n1.innerHTML='';
       n2.innerHTML='';
       n3.innerHTML="";
@@ -99,6 +102,13 @@ function valid(){
         n6.innerHTML='Please enter Email';
         flag= false;
       }
+      else
+     {
+    	if(regex_email.test(email)==false)
+    		{
+    		n6.innerHTML="Please enter valid Email Id";
+    		}
+   	 }
       if(card_type=='')
       {
         n7.innerHTML='Please select Card';
@@ -124,22 +134,11 @@ function valid(){
   }
 </script>
 
-
 </head>
 <body>
-<div class="header-section">
-	<div class = "nav">
-		<ul>
-		<li><a href='index.jsp'>Home</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<li><a href="#">About Us</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<li><a href="#">Contact Us</a>
-		<ul>
-		
-		</ul>
-		</li>
-		</ul>
-	</div>
-</div>
+
+ <%@include file="loginUsermenu.html" %>
+
 <div class="container">
 <div id="register"  class="animate form">
 <form action="register.do" method="post" >

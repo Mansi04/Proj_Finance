@@ -6,14 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Installment History</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
+<title>EMI History</title>
 </head>
 <body>
-<div class="dash">
+
 	<%@ include file="menuUser.html" %>	
-</div>
+
 
 <center>
+<div style="margin-top: 100px">
 <table border="1" >
 
 <h3><b>EMI Plans History </b> </h3>
@@ -26,6 +29,7 @@
 
 </c:forEach>
 </table>
+</div>
 </center>
 
 </body>

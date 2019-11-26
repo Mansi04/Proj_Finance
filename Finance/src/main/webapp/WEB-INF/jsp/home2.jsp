@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<%@ include file="loginUsermenu.html" %>
+
 ${status}
 
 </body>

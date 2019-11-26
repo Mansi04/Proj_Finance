@@ -8,10 +8,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <title>Product Details</title>
+<!-- <script type="text/javascript">
+	function show()
+	{
+		var option = document.getElementById("emi").value;
+		 var n1=document.getElementById('id1');
+		 n1.innerHTML=" ";
+		 n1.innerHTML=" Your Option selected is"+option;
+	}
+</script>
+ -->
 </head>
 <body>
-
+<%@ include file="menuUser.html" %>	
+<div style="margin-top: 100px;">
 <center>
 <table>
 <tr>
@@ -66,11 +79,11 @@
 <c:if test="${prod.pcost < 50000}">
 	<tr>
 	<div id="6mon">
-	<td><input type="radio" name="emi" value="3:${prod.threeMonEmi}">  3 months </td>
+	<td><input type="radio" name="emi" id="emi" value="3:${prod.threeMonEmi}">  3 months </td>
 	 <td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
 	
-	<td><input type="radio" name="emi" value="6:${prod.sixMonEmi }">  6 months </td> 
+	<td><input type="radio" name="emi" id="emi" value="6:${prod.sixMonEmi }">  6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	</div>
 	</c:if>
@@ -78,29 +91,29 @@
 <div id="9mon">
 
 <tr>
-	<td> <input type="radio" name="emi" value="3:${prod.threeMonEmi}"> 3 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="3:${prod.threeMonEmi}"> 3 months </td> 
 	<td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
 	<td>
-	<input type="radio" name="emi" value="6:${prod.sixMonEmi}">6 months </td> 
+	<input type="radio" name="emi" id="emi" value="6:${prod.sixMonEmi}">6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
 	<td>${prod.nineMonEmi }</td> <td>${prod.pcost}</td></tr></div>
 </c:if>
 <c:if test="${prod.pcost > 70000 }">
 	<div id="12mon">
 	<tr>
-	<td> <input type="radio" name="emi" value="3:${prod.threeMonEmi }"> 3 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="3:${prod.threeMonEmi }"> 3 months </td> 
 	<td>${prod.threeMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="6:${prod.sixMonEmi}"> 6 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="6:${prod.sixMonEmi}"> 6 months </td> 
 	<td>${prod.sixMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="9:${prod.nineMonEmi}"> 9 months </td> 
 	<td>${prod.nineMonEmi }</td> <td>${prod.pcost}</td></tr>
 	<tr>
-	<td> <input type="radio" name="emi" value="12:${prod.twelveMonEmi}"> 12 months </td> 
+	<td> <input type="radio" name="emi" id="emi" value="12:${prod.twelveMonEmi}"> 12 months </td> 
 	<td>${prod.twelveMonEmi }</td> <td>${prod.pcost}</td></tr></div>
 
 
@@ -111,7 +124,10 @@
 
 <input type="submit" value="Proceed To Pay">
 </form>
-</center>
+<!-- <div id="id1">
 
+</div> -->
+</center>
+</div>
 </body>
 </html>

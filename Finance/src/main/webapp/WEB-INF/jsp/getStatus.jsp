@@ -6,20 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 </head>
 <body>
-
-<div class="dash">
   <%@include file="menuUser.html" %>
-</div>
 
+<div style="margin-top: 200px">
 <form action="trackStatus.do" method="post">
-
-
 Applicant Id : <input type="text" name="app_id" id="app_id">
 <br>
 <br>
 <input type="submit" value="Track Status">
 </form>
+</div>
 </body>
 </html>

@@ -5,13 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 
 <title>Insert title here</title>
 </head>
 <body>
-<div class="dash">
+
 	 <%@include file="menuadmin.html" %>
-</div>
+<div style="margin-top: 100px;">
 <div class="column side2">
     <center>Password Update</center>
 	<form id="adchngepass"  action="adchngepass.do"	method="post">
@@ -38,6 +39,7 @@
 		</table>
 	</form>
 	
+</div>
 </div>
 </body>
 </html>

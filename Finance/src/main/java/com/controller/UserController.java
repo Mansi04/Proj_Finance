@@ -35,7 +35,13 @@ public class UserController {
 
 	@Autowired
 	UserService userservice;
-
+	
+	@RequestMapping(value = "/reg", method = RequestMethod.GET)
+	  public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
+	    ModelAndView mav = new ModelAndView("registration");
+	    mav.addObject("user", new Users());
+	    return mav;
+	  }
 	@RequestMapping(value="/register" ,method=RequestMethod.POST )
 	public ModelAndView registerUser(HttpServletRequest request,HttpServletResponse response){
 		
@@ -102,7 +108,15 @@ public class UserController {
 	    mav.addObject("user", new Users());
 	    return mav;
 	     }
-
+	
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+	  public ModelAndView userHome(HttpServletRequest request, HttpServletResponse response) {
+	    ModelAndView mav = new ModelAndView("Welcome");
+	    mav.addObject("user", new Users());
+	    return mav;
+	     }
+	
+	
 	  @RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	  public ModelAndView loginProcess(@ModelAttribute User user, HttpSession session) {
 		  System.out.println(user.getEmail()+"\n"+user.getPassword());	  
@@ -116,6 +130,7 @@ public class UserController {
 	    	   mav.addObject("status","Login Success");
 	    	   //session manage
 	    	   session.setAttribute("user", flag);
+	    	   mav.addObject("user", flag);
 	    	   System.out.println(flag.getUser_id()+"Session");
 	    	   mav.setViewName("Welcome");
 	    	   return mav;
@@ -139,7 +154,7 @@ public class UserController {
 	  }
 	@RequestMapping(value = "/changepasswrd", method = RequestMethod.POST)
 	  public ModelAndView changepwd2(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      String username=(String)session.getAttribute("username");
+      String username=(String)session.getAttribute("user");
       String opwd= request.getParameter("opassword");
       String npwd= request.getParameter("npassword");
       System.out.println(username+"  "+opwd+"  "+npwd);
@@ -174,7 +189,7 @@ public class UserController {
 	
 	
 //---------------------------------------------------------------------------------------//
-	//PaymentProccess
+	//Getting Emi Plan
 	
 	@RequestMapping(value = "/payment", method = RequestMethod.POST)
 	  public ModelAndView getPaymentDetails(HttpServletRequest request, HttpServletResponse response,HttpSession session) {

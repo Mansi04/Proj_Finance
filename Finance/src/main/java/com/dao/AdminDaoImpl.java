@@ -38,17 +38,12 @@ public class AdminDaoImpl implements AdminDaoIntf {
 		         .setParameter("username", admin.getUsername())
 		         .setParameter("password", admin.getPassword())
 		         .getSingleResult();
-			System.out.println(f);
 			
 			if(f!=null){
-			//	if(f.getAdpass().equals(admin.getPassword())
 					flag=true;
 			}
-			//em.close();
 		}
 		catch(Exception e) {System.out.println(e); }
-		
-		System.out.println(f);
 		return flag;
 		}
 	
@@ -64,6 +59,7 @@ public class AdminDaoImpl implements AdminDaoIntf {
 		  System.out.println("working");
 		  if(r>0)
 			  flag=true;
+		  System.out.println(flag);
 		  return flag;
 	  }
 	
@@ -119,7 +115,7 @@ public class AdminDaoImpl implements AdminDaoIntf {
 				user.setBank(applicant.getBank());
 				user.setAccount_no(applicant.getAccount_no());
 				user.setIfsc(applicant.getIfsc());
-				//session.setAttribute("userid", user.getUser_id());
+				
 				
 				
 				CardDetails cardDetails = new CardDetails();
@@ -142,9 +138,6 @@ public class AdminDaoImpl implements AdminDaoIntf {
 					cardDetails.setCredit_limit(250000);
 					cardDetails.setCredit_remaining(250000);
 				}				
-				cardDetails.setCredit_used(0);
-				cardDetails.setCredit_remaining(0);
-				
 				user.setCardDetails(cardDetails);
 				em.persist(user);				
 			}

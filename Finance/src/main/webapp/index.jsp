@@ -3,24 +3,39 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome Page</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+<link rel="stylesheet" type="text/css" href="css/style1.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
+
+
+
 <div class="header-section">
-	<nav class="header-nav">
-		<ul class="main-menu">
-			<li><a href="index.jsp">HOME</li>
-			<li><a href="#">AboutUs</li>
-			<li><a href="#">Contact Us</li>
-			<li><a href="registration.html">Register</li>
-			<li><a href="login.do">Login User</li>
-			<li><a href="admin.do">Login Admin</li>
-			<li><a href="track.do">Track Status</li>
-		</ul>
-	</nav>
+<div class = "nav">
+<ul>
+<li><a href = "#"></a></li>
+<li><a href = "#"></a></li>
+<li><a href = "index.jsp">Home</a></li>
+<li><a href = "reg.do">Sign Up</a></li>
+<li><a href = "#">Login</a>
+<ul>
+<li><a href = "login.do">User Login</a></li>
+<li><a href = "admin.do">Admin Login</a>
+</ul>
+</li>
+<li><a href = "#">About Us</a></li>
+<li><a href = "#">Contact Us</a>
+<ul>
+<li><a href = "faq.html">FAQs</a></li>
+<li><a href = "support.html">Support</a>
+</ul>
+</li>
+<li><a href = "track.do">Track Status</a></li>
+</ul>
+</div>
 </div>
 
 <!-- For Sliding images -->
@@ -54,5 +69,8 @@ function carousel() {
 
 <div class="footer-section">
 </div>
+
+
+
 </body>
 </html>
