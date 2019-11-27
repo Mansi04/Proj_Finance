@@ -73,7 +73,7 @@ public class AdminController {
       }
 	} 
 	
-	//Getting User details 
+	//Getting User details for verification
 	 @RequestMapping(value = "/getApplicant", method = RequestMethod.GET)
 	  public ModelAndView getApplicant(HttpServletRequest request, HttpServletResponse response) {
 	    ModelAndView mav = new ModelAndView("getApplicant");

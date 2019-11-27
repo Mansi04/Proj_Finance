@@ -101,13 +101,7 @@ function valid(){
         n6.innerHTML='Please enter Email';
         flag= false;
       }
-     /*  else
-     {
-    	if(regex_email.test(email)==false)
-    		{
-    		n6.innerHTML="Please enter valid Email Id";
-    		}
-   	 } */
+    
       if(card_type=='')
       {
         n7.innerHTML='Please select Card';

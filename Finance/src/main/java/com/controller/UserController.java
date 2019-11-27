@@ -158,7 +158,7 @@ public class UserController {
       String username=(String)session.getAttribute("user");
       String opwd= request.getParameter("opassword");
       String npwd= request.getParameter("npassword");
-      System.out.println(username+"  "+opwd+"  "+npwd);
+    
       boolean flag = userservice.changepasswrd(username,opwd,npwd);
       if(flag) {
 	       ModelAndView mav = new ModelAndView("changepasswrd");

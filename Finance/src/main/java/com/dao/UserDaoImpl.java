@@ -97,7 +97,7 @@ public class UserDaoImpl implements UserDao{
 	public boolean changepasswrd(String username, String opwd, String npwd) {
 		boolean flag=false;
 		
-		  Query query = em.createQuery("update User u set u.password=:npwd where u.username=:username and u.password=:opwd");
+		  Query query = em.createQuery("update User u set u.password=:npwd where u.email=:username and u.password=:opwd");
 		  query.setParameter("npwd", npwd);
 		  query.setParameter("opwd", opwd);
 		  query.setParameter("username", username);
