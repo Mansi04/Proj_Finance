@@ -19,7 +19,7 @@ public class CardDetails {
 	@Temporal(TemporalType.DATE)
 	private Date val_expiredate;
 	private int credit_limit;
-	private int credit_used;
+	
 	private int credit_remaining;
 	
 	@OneToOne
@@ -58,14 +58,7 @@ public class CardDetails {
 		this.credit_limit = credit_limit;
 	}
 
-	public int getCredit_used() {
-		return credit_used;
-	}
-
-	public void setCredit_used(int credit_used) {
-		this.credit_used = credit_used;
-	}
-
+	
 	public int getCredit_remaining() {
 		return credit_remaining;
 	}

@@ -67,7 +67,8 @@ public class UserController {
 		
 		if(flag){
 			
-			   ModelAndView mav = new ModelAndView("redirect:/index.jsp");
+			 //  ModelAndView mav = new ModelAndView("redirect:/index.jsp");
+			  ModelAndView mav = new ModelAndView("applicantId");
 			   mav.addObject("username", username);
 			   mav.addObject("status", "You have successfully registered. Please visit our nearest branch for further verification");
 			   mav.addObject("users",users);

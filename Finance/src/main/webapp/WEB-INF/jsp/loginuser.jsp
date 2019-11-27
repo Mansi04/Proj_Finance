@@ -8,12 +8,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<title>User Login</title>
+<title>LTI PayEase</title>
 
 <!-- Validation for Login -->
 <script>
 function valid(){
-      var uname = document.getElementById('username').value;
+      var uname = document.getElementById('email').value;
       var pass = document.getElementById('password').value;
 
       var n1=document.getElementById('id1');
@@ -27,10 +27,10 @@ function valid(){
       var flag=true;
       if(uname=='')
       {
-        n1.innerHTML='Please enter Username';
+        n1.innerHTML='Please enter Email id';
         return false;
       }
-      else{
+     /*  else{
         if(regex_uname.test(uname)==false)
         {
           n1.innerHTML='Not a valid username';
@@ -38,7 +38,7 @@ function valid(){
         }
         
         
-      }
+      } */
       if(pass=='')
       {
         n2.innerHTML='Please enter Password';
@@ -65,7 +65,7 @@ function valid(){
 		<table align="center">
 			<tr>
 				<td>Emailid : </td>
-				<td><input type="text" name="email" id="email" />
+				<td><input type="text" name="email" id="email" required/>
 				<div id="id1"></div>
 				</td>
 				
@@ -73,7 +73,7 @@ function valid(){
 			
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" name="password" id="password" />
+				<td><input type="password" name="password" id="password"/>
 				<div id="id2"></div>
 				</td>
 			</tr>

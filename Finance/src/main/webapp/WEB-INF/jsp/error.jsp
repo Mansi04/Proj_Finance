@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
+<title>LTI PayEase</title>
 </head>
 <body>
-Nikal...pehli fursat me nikal
+
+<%@ include file="loginUsermenu.html" %>
+<div style="margin-top: 200px">
+<H3>Sorry Something went Wrong</H3>
+</div>
 </body>
 </html>

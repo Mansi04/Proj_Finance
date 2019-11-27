@@ -69,5 +69,12 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">  -->
 <tx:annotation-driven transaction-manager="transactionManager" />
 
  
+ <bean class = "org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    
+
+   <property name = "defaultErrorView" value = "error"/>
+
+</bean> 
+ 
  
 </beans>

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>LTI PayEase</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 </head>
 <body>
-  <%@include file="menuUser.html" %>
+  <%@include file="loginUsermenu.html" %>
 
 <div style="margin-top: 200px">
 <form action="trackStatus.do" method="post">

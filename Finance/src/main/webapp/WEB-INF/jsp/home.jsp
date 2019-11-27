@@ -5,12 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<title>Registration Completed</title>
+<link rel="stylesheet" type="text/css" href="css/style1.css">
+<title>LTI PayEase</title>
 </head>
 <body>
-
+ <%@include file="loginUsermenu.html" %>
+ <div style="margin-top: 100px">
 ${ulist.app_id}
 ${ulist.status}
-
+</div>
 </body>
 </html>

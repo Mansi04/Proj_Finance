@@ -6,14 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Details</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style1.css">
+<title>LTI PayEase</title>
 </head>
 <body>
+	<%@ include file="menuadmin.html" %>	
 
-<%-- <c:forEach items="${ulist}" var="users"> --%>
 <div>
+<div style="margin-top: 200px;">
 <form action="verify.do" method="post">
 <input type="hidden" name="app_id" value="${ulist.app_id}">
+
 <table>
 <center>
 	<%-- <c:param name="app_id" value="${ ulist.app_id}"/> --%>
@@ -52,11 +56,12 @@
 		  </tr>
  </center>
   </table>
-</div>
+  </div>
+
 
 
 </form>
 
-
+</div>
 </body>
 </html>

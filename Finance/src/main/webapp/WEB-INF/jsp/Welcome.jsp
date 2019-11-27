@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/style1.css">
-<title>Welcome</title>
+<title>LTI PayEase</title>
 </head>
 <body>
 

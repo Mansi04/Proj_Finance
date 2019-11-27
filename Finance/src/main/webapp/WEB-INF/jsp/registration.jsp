@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<title>Registration</title>
+<title>LTI PayEase</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 
@@ -41,8 +41,7 @@ function valid(){
       var regex_fname= /^[a-zA-Z]{2,}$/;
       var regex_contact= /^[0-9]{10}$/;
       var regex_pass = /^[a-zA-Z0-9!@#$%^&*_]{6,}$/;
-      var regex_email=/^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*
-          @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$/;
+
       n1.innerHTML='';
       n2.innerHTML='';
       n3.innerHTML="";
@@ -102,13 +101,13 @@ function valid(){
         n6.innerHTML='Please enter Email';
         flag= false;
       }
-      else
+     /*  else
      {
     	if(regex_email.test(email)==false)
     		{
     		n6.innerHTML="Please enter valid Email Id";
     		}
-   	 }
+   	 } */
       if(card_type=='')
       {
         n7.innerHTML='Please select Card';
@@ -144,27 +143,27 @@ function valid(){
 <form action="register.do" method="post" >
 	<h1>Register Yourself </h1>
 
-<input type="text" name="fname" id="fname" placeholder="First Name" >
+<input type="text" name="fname" id="fname" placeholder="First Name" required>
 <div id="id1"></div>
 
 <br>
-<input type="text" name="lname" id="lname" placeholder="Last Name" >
+<input type="text" name="lname" id="lname" placeholder="Last Name" required>
 <div id="id2"></div>
 
 <br>
-<input type="text" name="username" id="username" placeholder="UserName" >
+<input type="text" name="username" id="username" placeholder="UserName" required>
 <div id="id3"></div>
 
 <br>
-<input type="password" name="password" id="password" placeholder="Password" >
+<input type="password" name="password" id="password" placeholder="Password" required>
 <div id="id4"></div>
 
 <br>
-<input type="text" name="contact" id="contact_no" placeholder="Contact Number" >
+<input type="text" name="contact" id="contact_no" placeholder="Contact Number" required>
 <div id="id5"></div>
 
 <br>
-<input type="email" name="email" id="email" placeholder="Email-id" >
+<input type="email" name="email" id="email" placeholder="Email-id" required>
 <div id="id6"></div>
 
 <br>
@@ -176,7 +175,7 @@ Card Type: <input type="radio" name="card_type" id="card_type" value="Gold">Gold
  <div id="id7"></div>
  
  <br><br>
- Bank: <select name="bank" id="bank">
+ Bank: <select name="bank" id="bank" required>
  <option name="HDFC" id="HDFC" value="HDFC">HDFC
   <option name="ICICI" id="ICICI" value="ICICI">ICICI
    <option name="SBI" id="SBI" value="SBI">SBI
@@ -185,11 +184,11 @@ Card Type: <input type="radio" name="card_type" id="card_type" value="Gold">Gold
  </select>          
  <div id="id8"></div>
  <br>
- <input type="text" name="account_no" id="account_no" placeholder="Account Number">
+ <input type="text" name="account_no" id="account_no" placeholder="Account Number" required>
  <div id="id9"></div>
  
  <br>
- <input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code">
+ <input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code" required>
  <div id="id10"></div>
  
  <br>

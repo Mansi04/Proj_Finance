@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 
-<title>Insert title here</title>
+<title>LTI PayEase</title>
 </head>
 <body>
 

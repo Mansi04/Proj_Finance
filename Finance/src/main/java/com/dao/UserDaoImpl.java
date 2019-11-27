@@ -151,9 +151,10 @@ public class UserDaoImpl implements UserDao{
 			emi_Plan.setEmi_no(emi_no);
 		
 			//deducting card limit for card details
-			String sql = "update CardDetails c set c.credit_remaining= c.credit_remaining -:cost where c.user_id=:userid";
-			Query query=em.createNativeQuery(sql).setParameter("cost", pcost).setParameter("userid", user);
-			
+			String sql = "update CardDetails set credit_remaining= credit_remaining -:cost where user_id=:userid";
+			Query query=em.createNativeQuery(sql).setParameter("cost", pcost).setParameter("userid", user.getUser_id());
+			int res = query.executeUpdate();
+			System.out.println(res);
 			// making entries into Installments table
 			for(int i=1; i<=emi1; i++){
 				Date date1 = new Date();

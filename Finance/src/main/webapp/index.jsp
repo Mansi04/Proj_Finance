@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome Page</title>
+<title>LTI PayEase</title>
 <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
